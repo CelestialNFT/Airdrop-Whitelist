@@ -46,7 +46,7 @@ if not exist "%installDir%" (
 
 :: Extract the downloaded ZIP file
 echo Extracting NSudo...
-powershell -Command "Expand-Archive -Path %outputFile% -DestinationPath %installDir% -Force"
+powershell -Command "Expand-Archive -Path '%cd%\%outputFile%' -DestinationPath '%installDir%' -Force"
 if %ERRORLEVEL% neq 0 (
     echo Failed to extract NSudo. Exiting...
     exit /b %ERRORLEVEL%
@@ -54,6 +54,9 @@ if %ERRORLEVEL% neq 0 (
 
 :: Clean up the downloaded ZIP file
 del %outputFile%
+
+:: Inform the user that NSudo has been installed
+echo NSudo has been installed successfully in %installDir%.
 
 
 
