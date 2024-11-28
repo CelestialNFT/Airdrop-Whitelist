@@ -1,4 +1,4 @@
-# CELESTIALS NFT WHITELIST GUIDE
+# CELESTIALS NFT WHITELIST AIRDROP GUIDE
 How to generate wallet and qualify for Celestials NFT Airdrop
 
 1. Open your command Prompt on Windows as Admin and run the following:
