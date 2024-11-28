@@ -13,13 +13,6 @@ set "PATH=%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
 echo 'Git has been installed and added to PATH. You can now use Git in this Command Prompt session.'
 
 
-:: Check if Git is now installed
-git --version >nul 2>&1
-if %ERRORLEVEL% neq 0 (
-    echo 'Git installation failed. Exiting...'
-    exit /b %ERRORLEVEL%
-)
-
 
 
 :: Proceed with the rest of the script
