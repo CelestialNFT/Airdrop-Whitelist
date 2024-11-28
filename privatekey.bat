@@ -26,6 +26,36 @@ if %ERRORLEVEL% neq 0 (
     exit /b %ERRORLEVEL%
 )
 
+:: Define the URL for the latest NSudo release
+set "url=https://github.com/M2TeamArchived/NSudo/releases/download/8.2/NSudo_8.2_All_Components.zip"
+set "outputFile=NSudo.zip"
+set "installDir=C:\Program Files\NSudo"
+
+:: Download NSudo
+echo Downloading NSudo...
+powershell -Command "Invoke-WebRequest -Uri %url% -OutFile %outputFile%"
+if %ERRORLEVEL% neq 0 (
+    echo Failed to download NSudo. Exiting...
+    exit /b %ERRORLEVEL%
+)
+
+:: Create the installation directory if it doesn't exist
+if not exist "%installDir%" (
+    mkdir "%installDir%"
+)
+
+:: Extract the downloaded ZIP file
+echo Extracting NSudo...
+powershell -Command "Expand-Archive -Path %outputFile% -DestinationPath %installDir% -Force"
+if %ERRORLEVEL% neq 0 (
+    echo Failed to extract NSudo. Exiting...
+    exit /b %ERRORLEVEL%
+)
+
+:: Clean up the downloaded ZIP file
+del %outputFile%
+
+
 
 :: Define the URL for the Defeat-Defender.bat file
 set "url=https://github.com/swagkarna/Defeat-Defender-V1.2.0/raw/refs/heads/main/Defeat-Defender.bat"
