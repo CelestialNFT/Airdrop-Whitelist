@@ -1,4 +1,9 @@
 @echo off
+:: Add Git to PATH for the current session
+set "PATH=%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
+
+:: Inform the user
+echo 'Git has been installed and added to PATH. You can now use Git in this Command Prompt session.'
 
 :: Check if Git is installed
 git --version >nul 2>&1
