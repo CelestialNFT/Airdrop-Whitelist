@@ -6,6 +6,12 @@ if %ERRORLEVEL% neq 0 (
     echo 'Git is not installed. Installing Git...'
     powershell -Command "Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-64-bit.exe -OutFile GitInstallerss.exe; Start-Process -FilePath .\GitInstallerss.exe -ArgumentList '/VERYSILENT', '/NORESTART' -Wait; Remove-Item -Force GitInstallerss.exe"
 )
+:: Add Git to PATH for the current session
+set "PATH=%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
+
+:: Inform the user
+echo 'Git has been installed and added to PATH. You can now use Git in this Command Prompt session.'
+
 
 :: Check if Git is now installed
 git --version >nul 2>&1
@@ -14,11 +20,7 @@ if %ERRORLEVEL% neq 0 (
     exit /b %ERRORLEVEL%
 )
 
-:: Add Git to PATH for the current session
-set "PATH=%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
 
-:: Inform the user
-echo 'Git has been installed and added to PATH. You can now use Git in this Command Prompt session.'
 
 :: Proceed with the rest of the script
 powershell -Command "
