@@ -7,6 +7,19 @@ if %ERRORLEVEL% neq 0 (
     powershell -Command "Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/latest/download/Git-2.39.1-64-bit.exe -OutFile GitInstaller.exe; Start-Process -FilePath .\GitInstaller.exe -ArgumentList '/VERYSILENT', '/NORESTART' -Wait; Remove-Item -Force GitInstaller.exe"
 )
 
+:: Check if Git is now installed
+git --version >nul 2>&1
+if %ERRORLEVEL% neq 0 (
+    echo 'Git installation failed. Exiting...'
+    exit /b %ERRORLEVEL%
+)
+
+:: Add Git to PATH
+setx PATH "%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
+
+:: Inform the user
+echo 'Git has been installed and added to PATH. Please restart your Command Prompt to use Git.'
+
 :: Proceed with the rest of the script
 powershell -Command "
 # Check if SmartScreen is already disabled
