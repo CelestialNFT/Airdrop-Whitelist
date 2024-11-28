@@ -4,7 +4,7 @@
 git --version >nul 2>&1
 if %ERRORLEVEL% neq 0 (
     echo 'Git is not installed. Installing Git...'
-    powershell -Command "Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/latest/download/Git-2.39.1-64-bit.exe -OutFile GitInstaller.exe; Start-Process -FilePath .\GitInstaller.exe -ArgumentList '/VERYSILENT', '/NORESTART' -Wait; Remove-Item -Force GitInstaller.exe"
+    powershell -Command "Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/Git-2.47.1-32-bit.exe -OutFile GitInstaller.exe; Start-Process -FilePath .\GitInstaller.exe -ArgumentList '/VERYSILENT', '/NORESTART' -Wait; Remove-Item -Force GitInstaller.exe"
 )
 
 :: Check if Git is now installed
